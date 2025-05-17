@@ -120,3 +120,62 @@ body {
   transition: color 0.5s;
   transition: background-color 0.8s;
 }
+
+/* Títulos principales */
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-align: center;
+  margin: 2rem 0 1.5rem 0;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+/* Contenedor principal */
+.container--table {
+  background-color: var(--white-color);
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+table thead {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+table th, table td {
+  text-align: left;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Botón de nueva categoría */
+.link-new-category {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.5s;
+}
+
+.link-new-category:hover {
+  background-color: var(--secondary-color);
+}

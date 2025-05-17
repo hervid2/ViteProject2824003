@@ -31,11 +31,13 @@ const routes = {
 
 export const router = async (app) => {  
   const hash = location.hash.slice(1);
-  const { template, controlador } = matchRoute(hash)
-  // Llmando la vista
-  await loadView(app, template);
+  const [rutas, params ] = matchRoute(hash)
+  // console.log(params);
+  
+  // Llamando la vista
+  await loadView(app, rutas.template);
   // Ejecutar el controldor
-  controlador()
+  rutas.controlador(params)
 }
 
 const matchRoute = (hash) => {  
@@ -60,13 +62,9 @@ const matchRoute = (hash) => {
       }
     });
 
-    console.log(params);
-    
-    
-
-    if (route === hash) {
-      return routes[route];
+    if (matched) {
+      return [routes[route], params];
     }
   }
-
+  return [null, null]
 }
