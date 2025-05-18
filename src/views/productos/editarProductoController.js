@@ -1,22 +1,28 @@
 import Swal from "sweetalert2";
-export const editarController = async (a) => {
+export const editarProductoController = async (a) => {
     // Declaración de variables
     const form = document.querySelector('form');
     const nombre = document.querySelector('#nombre');
     const descripcion = document.querySelector('#descripcion');
+    const precio = document.querySelector('#precio');
+    const categoria_id = document.querySelector('#categoria_id');
     // Solicitud a la API
     const request = await fetch(`http://localhost:3000/api/categorias/${a.id}`);
     const {data} = await request.json();
     //Llenado de los campos para el editado
     nombre.value = data.nombre;
-    descripcion.value = data.descripción;
+    descripcion.value = data.descripcion;
+    precio.value = data.precio;
+    categoria_id.value = data.categoria_id;
 
     // Declaración de métodos
         const actualizar = async (e) => {
             e.preventDefault()
             const data = {
                 nombre: nombre.value,
-                descripcion: descripcion.value
+                descripcion: descripcion.value,
+                precio: precio.value,
+                categoria_id: categoria_id.value
             }
             const request = await fetch(`http://localhost:3000/api/categorias/${a.id}`, {
                 method: 'PUT',

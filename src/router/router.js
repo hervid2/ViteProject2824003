@@ -1,9 +1,10 @@
 import { loadView } from "../helpers/loadView";
 import { productosController } from "../views/productos/productosController.js";
 import { productoController } from "../views/productos/productoController.js";
+import { editarProductoController } from "../views/productos/editarProductoController.js";
 import { categoriasController } from "../views/categorias/categoriasController.js";
 import { categoriaController } from "../views/categorias/categoriaController.js";
-import { editarController } from "../views/categorias/editarController.js";
+import { editarCategoriaController } from "../views/categorias/editarCategoriaController.js";
 
 
 const routes = {
@@ -15,6 +16,10 @@ const routes = {
     "template": "productos/producto.html",
     controlador: productoController
   },
+   "editarProducto/:id": {
+    "template": "productos/editar.html",
+    controlador: editarProductoController
+  },
   categorias: {
     "template": "categorias/index.html",
     controlador: categoriasController
@@ -25,7 +30,7 @@ const routes = {
   },
   "editarcategoria/:id": {
     "template": "categorias/editar.html",
-    controlador: editarController
+    controlador: editarCategoriaController
   }
 };
 

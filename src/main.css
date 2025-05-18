@@ -11,6 +11,7 @@
   --white-color: #fff;
   --black-color: #000;
   --danger-color: #d71a1a;
+  --danger-color__secondary: #a31919 ;
 }
 body {
   background-color: #f2f2f2;
@@ -100,7 +101,7 @@ body {
 
 .btn {
   display: inline-block;
-  width: 100%;
+  width: 50%;
   padding: 0.9rem 1.1rem;
   background-color: var(--primary-color);
   color: var(--tertiary-color);
@@ -114,12 +115,43 @@ body {
   cursor: pointer;
 }
 
+
 .btn:hover {
   background-color: var(--secondary-color);
   border: solid 1px var(--secondary-color);
   transition: color 0.5s;
   transition: background-color 0.8s;
 }
+
+.btn--danger {
+  display: inline-block;
+  width: 50%;
+  padding: 0.9rem 1.1rem;
+  background-color: var(--danger-color);
+  color: var(--tertiary-color);
+  text-decoration: none;
+  border-radius: 5px;
+  border: solid 1px var(--danger-color);
+  text-align: center;
+  font-weight: 600;
+  transition: color 0.5s;
+  transition: background-color 1s;
+  cursor: pointer;
+}
+
+.btn--danger:hover {
+  background-color: var(--danger-color__secondary);
+  border: solid 1px var(--danger-color__secondary);
+  transition: color 0.5s;
+  transition: background-color 0.8s;
+}
+
+.botonera {
+  display: flex;
+  gap: 1rem;
+}
+
+
 
 /* Títulos principales */
 .title {
