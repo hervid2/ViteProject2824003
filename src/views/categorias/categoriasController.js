@@ -1,3 +1,4 @@
+import { eliminarCategoriaController } from "./eliminarCategoriaController.js";
 export const categoriasController = () => {
   
   const listar =  async () => {
@@ -10,7 +11,6 @@ export const categoriasController = () => {
       const tr = document.createElement('tr');
       const tdNombre = document.createElement('td');
       const tdDescripcion = document.createElement('td');
-      const tdCategoria = document.createElement('td');
       const tdAcciones = document.createElement('td');
       const div = document.createElement('div');
       const btnEditar = document.createElement('a')
@@ -18,7 +18,6 @@ export const categoriasController = () => {
       // Agregamos los textos
       tdNombre.textContent = nombre;
       tdDescripcion.textContent = descripcion;
-      // tdCategoria.textContent = categoria;
       btnEditar.textContent = "Editar";
       btnEliminar.textContent = "Eliminar";
       // Agregamos los atributos
@@ -30,9 +29,14 @@ export const categoriasController = () => {
       div.append(btnEditar, btnEliminar)
       tdAcciones.append(div);
       // Agregamos las columnas a la fila
-      tr.append(tdNombre, tdDescripcion, tdCategoria, tdAcciones );
+      tr.append(tdNombre, tdDescripcion, tdAcciones );
       // Agregamos la fila a la tabla
       tbody.append(tr);
+      // Eliminar categoria
+      btnEliminar.dataset.id = data.id;
+      btnEliminar.addEventListener ("click",  async () => {
+        await eliminarCategoriaController(id);
+      })
     });
     
   }

@@ -7,13 +7,25 @@ export const editarProductoController = async (a) => {
     const precio = document.querySelector('#precio');
     const categoria_id = document.querySelector('#categoria_id');
     // Solicitud a la API
-    const request = await fetch(`http://localhost:3000/api/categorias/${a.id}`);
-    const {data} = await request.json();
+    const requestproductos = await fetch(`http://localhost:3000/api/productos/${a.id}`);
+    const { data: productos } = await requestproductos.json();
+    const requestCategorias = await fetch(`http://localhost:3000/api/categorias`);
+    const {data: categorias} = await requestCategorias.json();
+
+    // Llenado de los select
+    categorias.forEach((categoria) => {
+        const option = document.createElement('option');
+        option.value=categoria.id;
+        option.textContent=categoria.nombre;
+        categoria_id.appendChild(option);
+    });
+
     //Llenado de los campos para el editado
-    nombre.value = data.nombre;
-    descripcion.value = data.descripcion;
-    precio.value = data.precio;
-    categoria_id.value = data.categoria_id;
+    nombre.value = productos.nombre
+    descripcion.value = productos.descripcion
+    categoria_id.value = productos.categoria_id
+    precio.value = productos.precio
+
 
     // Declaración de métodos
         const actualizar = async (e) => {
@@ -24,8 +36,8 @@ export const editarProductoController = async (a) => {
                 precio: precio.value,
                 categoria_id: categoria_id.value
             }
-            const request = await fetch(`http://localhost:3000/api/categorias/${a.id}`, {
-                method: 'PUT',
+            const request = await fetch(`http://localhost:3000/api/productos/${a.id}`, {
+                method: 'PATCH',
                 body: JSON.stringify(data),
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
@@ -40,7 +52,7 @@ export const editarProductoController = async (a) => {
                     icon: 'success',
                     confirmButtonText: 'Cool'
                 })
-                location.hash = "#categorias";
+                location.hash = "#productos";
             }else{
                 console.log(response);   
                 Swal.fire({

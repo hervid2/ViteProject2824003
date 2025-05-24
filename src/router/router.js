@@ -8,6 +8,10 @@ import { editarCategoriaController } from "../views/categorias/editarCategoriaCo
 
 
 const routes = {
+   "/": {
+    "template": "productos/index.html",
+    controlador: productosController
+  },
   productos: {
     "template": "productos/index.html",
     controlador: productosController
@@ -46,7 +50,7 @@ export const router = async (app) => {
 }
 
 const matchRoute = (hash) => {  
-  const arreglo = hash.split('/') ;  
+  const arreglo = hash.split('/');  
 
   for (const route in routes) {
     const b = route.split('/') ;    
@@ -55,8 +59,8 @@ const matchRoute = (hash) => {
     
     const params = {}
 
-    const matched = b.every( (parte, i) => {      
-      if (parte.startsWith(":")) {   
+    const matched = b.every((parte, i) => {      
+      if(parte.startsWith(":")) {   
         const partName = parte.slice(1);
         const value = arreglo[i];
         params[partName] = value;

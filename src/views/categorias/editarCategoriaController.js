@@ -6,10 +6,10 @@ export const editarCategoriaController = async (a) => {
     const descripcion = document.querySelector('#descripcion');
     // Solicitud a la API
     const request = await fetch(`http://localhost:3000/api/categorias/${a.id}`);
-    const {data} = await request.json();
+    const {data: categorias} = await request.json();
     //Llenado de los campos para el editado
-    nombre.value = data.nombre;
-    descripcion.value = data.descripcion;
+    nombre.value = categorias.nombre;
+    descripcion.value = categorias.descripcion;
 
     // Declaración de métodos
         const actualizar = async (e) => {
@@ -19,7 +19,7 @@ export const editarCategoriaController = async (a) => {
                 descripcion: descripcion.value
             }
             const request = await fetch(`http://localhost:3000/api/categorias/${a.id}`, {
-                method: 'PUT',
+                method: 'PATCH',
                 body: JSON.stringify(data),
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
@@ -35,8 +35,7 @@ export const editarCategoriaController = async (a) => {
                     confirmButtonText: 'Cool'
                 })
                 location.hash = "#categorias";
-            }else{
-                console.log(response);   
+            }else{ 
                 Swal.fire({
                     title: 'Error!',
                     text: response.message,
