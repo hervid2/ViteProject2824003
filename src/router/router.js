@@ -5,6 +5,8 @@ import { editarProductoController } from "../views/productos/editarProductoContr
 import { categoriasController } from "../views/categorias/categoriasController.js";
 import { categoriaController } from "../views/categorias/categoriaController.js";
 import { editarCategoriaController } from "../views/categorias/editarCategoriaController.js";
+import { loginController } from "../views/login/loginController.js";
+import { registroController } from "../views/registro/registroController.js";
 
 
 const routes = {
@@ -35,7 +37,15 @@ const routes = {
   "editarcategoria/:id": {
     "template": "categorias/editar.html",
     controlador: editarCategoriaController
-  }
+  },
+  login: {
+    "template": "login/index.html",
+    controlador: loginController
+  },
+  registro: {
+    "template": "registro/index.html",
+    controlador: registroController
+  },
 };
 
 export const router = async (app) => {  
