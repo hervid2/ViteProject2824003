@@ -37,7 +37,7 @@ export const registroController = () => {
                   title: 'Error!',
                   text: response.message,
                   icon: 'error',
-                  confirmButtonText: 'Cool'
+                  confirmButtonText: 'Error en el registro!'
               })
            
           }        

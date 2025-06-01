@@ -1,4 +1,8 @@
-import Swal from "sweetalert2";
+import { setData } from "../../helpers/auth";
+import { error } from "../../helpers/alerts";
+import { success } from "../../helpers/alerts";
+import { encabezados } from "../../helpers/solicitudes";
+
 export const loginController = () => {
 // Declaración de variables
     const form = document.querySelector('form');
@@ -16,28 +20,19 @@ export const loginController = () => {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+              'Content-type': 'application/json; charset=UTF-8',
+              headers : encabezados
             },
         });
         const response = await request.json();
         if (response.success) {
-            form.reset()
-             Swal.fire({
-                title: 'Muy bien!',
-                text: response.message,
-                icon: 'success',
-                confirmButtonText: 'Cool'
-            })
-            location.hash = "#login";
+          setData(response.data)
+          success(response)
+          form.reset()
+          window.location.hash = "#inicio";
+          window.dispatchEvent(new CustomEvent ("nombre", {}))
         }else{
-            console.log(response);   
-            Swal.fire({
-                title: 'Error!',
-                text: response.message,
-                icon: 'error',
-                confirmButtonText: 'Cool'
-            })
-         
+         error(response)
         }        
     }
 

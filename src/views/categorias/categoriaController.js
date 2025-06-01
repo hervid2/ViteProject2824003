@@ -1,4 +1,6 @@
 import Swal from "sweetalert2";
+import { encabezados } from "../../helpers/solicitudes";
+
 export const categoriaController =  () => {
     // Declaración de variables
     const form = document.querySelector('form');
@@ -18,7 +20,8 @@ export const categoriaController =  () => {
             method: 'PATCH',
             body: JSON.stringify(data),
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+              'Content-type': 'application/json; charset=UTF-8',
+              headers : encabezados
             },
         });
         const response = await request.json();

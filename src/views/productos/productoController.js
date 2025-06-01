@@ -1,4 +1,6 @@
 import Swal from "sweetalert2";
+import { encabezados } from "../../helpers/solicitudes";
+
 export const productoController =async () => {
  // Declaración de variables
     const form = document.querySelector('form');
@@ -35,7 +37,8 @@ export const productoController =async () => {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'Content-type': 'application/json; charset=UTF-8',
+              'Content-type': 'application/json; charset=UTF-8',
+              headers : encabezados
             },
         });
         const response = await request.json();

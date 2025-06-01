@@ -1,4 +1,5 @@
 import { loadView } from "../helpers/loadView";
+import { estaAutenticado } from "../helpers/auth.js";
 import { productosController } from "../views/productos/productosController.js";
 import { productoController } from "../views/productos/productoController.js";
 import { editarProductoController } from "../views/productos/editarProductoController.js";
@@ -7,51 +8,73 @@ import { categoriaController } from "../views/categorias/categoriaController.js"
 import { editarCategoriaController } from "../views/categorias/editarCategoriaController.js";
 import { loginController } from "../views/login/loginController.js";
 import { registroController } from "../views/registro/registroController.js";
+import {inicioController} from "../views/inicio/inicioController.js"
 
 
 const routes = {
    "/": {
-    "template": "productos/index.html",
-    controlador: productosController
+    "template": "inicio/index.html",
+    controlador: inicioController,
+    private: false
   },
   productos: {
     "template": "productos/index.html",
-    controlador: productosController
+    controlador: productosController,
+    private: true
   },
   producto: {
     "template": "productos/producto.html",
-    controlador: productoController
+    controlador: productoController,
+    private: true
   },
    "editarProducto/:id": {
     "template": "productos/editar.html",
-    controlador: editarProductoController
+     controlador: editarProductoController,
+     private: true
   },
   categorias: {
     "template": "categorias/index.html",
-    controlador: categoriasController
+    controlador: categoriasController,
+    private: true
   },
   categoria: {
     "template": "categorias/categoria.html",
-    controlador: categoriaController
+    controlador: categoriaController,
+    private: true
   },
   "editarcategoria/:id": {
     "template": "categorias/editar.html",
-    controlador: editarCategoriaController
+    controlador: editarCategoriaController,
+    private: true
   },
   login: {
     "template": "login/index.html",
-    controlador: loginController
+    controlador: loginController,
+    private: false
   },
   registro: {
     "template": "registro/index.html",
-    controlador: registroController
+    controlador: registroController,
+    private: false
   },
 };
 
 export const router = async (app) => {  
   const hash = location.hash.slice(1);
-  const [rutas, params ] = matchRoute(hash)
-  // console.log(params);
+  const [rutas, params] = matchRoute(hash)
+  
+  if (!rutas) {
+    await loadView(app, 'inicio/index.html');
+    inicioController();
+    return;
+  }
+  //validamos si la ruta es privada
+  console.log(rutas.private, estaAutenticado());
+
+  if (rutas.private && !estaAutenticado()) {
+    window.location.href = "/#login";
+    return
+  }
   
   // Llamando la vista
   await loadView(app, rutas.template);
