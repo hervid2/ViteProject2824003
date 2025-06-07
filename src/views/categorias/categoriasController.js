@@ -1,8 +1,11 @@
+import { getData } from "../../helpers/auth.js";
 import { eliminarCategoriaController } from "./eliminarCategoriaController.js";
+import { encabezados } from "../../helpers/solicitudes";
+
 export const categoriasController = () => {
-  
+  const { accessToken } = getData();
   const listar =  async () => {
-    const request = await fetch('http://localhost:3000/api/categorias');
+    const request = await fetch('http://localhost:3000/api/categorias', encabezados);
     const { data } = await request.json();
     const tbody = document.querySelector('tbody');
     // Recorrecmos la respuesta

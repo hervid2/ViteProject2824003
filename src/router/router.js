@@ -11,7 +11,7 @@ import { registroController } from "../views/registro/registroController.js";
 import {inicioController} from "../views/inicio/inicioController.js"
 
 
-const routes = {
+export const routes = {
    "/": {
     "template": "inicio/index.html",
     controlador: inicioController,
@@ -69,7 +69,7 @@ export const router = async (app) => {
     return;
   }
   //validamos si la ruta es privada
-  console.log(rutas.private, estaAutenticado());
+  // console.log(rutas.private, estaAutenticado());
 
   if (rutas.private && !estaAutenticado()) {
     window.location.href = "/#login";

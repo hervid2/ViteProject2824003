@@ -1,6 +1,9 @@
 import Swal from "sweetalert2";
+
+
+
 export const registroController = () => {
-  // Declaración de variables
+  // Declaración de variables 
       const form = document.querySelector('form');
       const nombre = document.querySelector('#nombre')
       const correo = document.querySelector('#email');
@@ -18,7 +21,7 @@ export const registroController = () => {
               method: 'POST',
               body: JSON.stringify(data),
               headers: {
-                  'Content-type': 'application/json; charset=UTF-8',
+                'Content-type': 'application/json; charset=UTF-8'
               },
           });
           const response = await request.json();
@@ -30,7 +33,7 @@ export const registroController = () => {
                   icon: 'success',
                   confirmButtonText: 'Cool'
               })
-              location.hash = "#registro";
+              location.hash = "#login";
           }else{
               console.log(response);   
               Swal.fire({

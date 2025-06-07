@@ -1,8 +1,13 @@
 import { eliminarProductoController } from "./eliminarProductoController.js";
+import { getData } from "../../helpers/auth";
+import { encabezados } from "../../helpers/solicitudes";
+
+
 export const productosController = () => {
-  
+    const { accessToken } = getData();
   const listar =  async () => {
-    const request = await fetch('http://localhost:3000/api/productos');
+    const request = await fetch('http://localhost:3000/api/productos'
+    );
     const { data } = await request.json();
     const requestCategorias = await fetch('http://localhost:3000/api/categorias');
     const { data: categorias } = await requestCategorias.json();

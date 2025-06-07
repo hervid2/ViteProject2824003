@@ -1,3 +1,4 @@
+import { routes } from "../router/router";
 const accessToken = localStorage.getItem("accessToken");
 
 export const encabezados = {

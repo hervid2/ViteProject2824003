@@ -1,10 +1,10 @@
 import { setData } from "../../helpers/auth";
 import { error } from "../../helpers/alerts";
 import { success } from "../../helpers/alerts";
-import { encabezados } from "../../helpers/solicitudes";
 
 export const loginController = () => {
-// Declaración de variables
+  // Declaración de variables
+  
     const form = document.querySelector('form');
     const correo = document.querySelector('#email');
     const contrasena = document.querySelector('#password');
@@ -20,9 +20,8 @@ export const loginController = () => {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-              headers : encabezados
-            },
+              'Content-type': 'application/json; charset=UTF-8'
+            }
         });
         const response = await request.json();
         if (response.success) {

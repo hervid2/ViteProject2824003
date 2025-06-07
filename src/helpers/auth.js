@@ -1,12 +1,15 @@
 export const setData = (data) => {
-  // console.log(data.accessToken);
-  // console.log(data.resfreshToken);
+  console.log(data.accessToken);
+  console.log(data.refreshToken);
   localStorage.setItem('refreshToken', data.refreshToken);
   localStorage.setItem('accessToken', data.accessToken);
 }
 
 export const getData = () => {
-  
+  return{
+    accessToken: localStorage.getItem('accessToken'),
+    refreshToken: localStorage.getItem('refreshToken')
+  }
 }
 
 export const estaAutenticado = () => {

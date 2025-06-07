@@ -1,6 +1,10 @@
 import Swal from "sweetalert2";
+import { getData } from "../../helpers/auth";
+import { encabezados } from "../../helpers/solicitudes";
+
 export const editarCategoriaController = async (a) => {
-    // Declaración de variables
+  // Declaración de variables
+  const { accessToken } = getData();
     const form = document.querySelector('form');
     const nombre = document.querySelector('#nombre');
     const descripcion = document.querySelector('#descripcion');
@@ -21,9 +25,7 @@ export const editarCategoriaController = async (a) => {
             const request = await fetch(`http://localhost:3000/api/categorias/${a.id}`, {
                 method: 'PATCH',
                 body: JSON.stringify(data),
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                },
+                encabezados
             });
             const response = await request.json();
             if (response.success) {

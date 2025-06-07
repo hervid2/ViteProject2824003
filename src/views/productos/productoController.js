@@ -1,8 +1,11 @@
 import Swal from "sweetalert2";
 import { encabezados } from "../../helpers/solicitudes";
+import { getData } from "../../helpers/auth";
+
 
 export const productoController =async () => {
- // Declaración de variables
+  // Declaración de variables
+    const { accessToken } = getData();
     const form = document.querySelector('form');
     const nombre = document.querySelector('#nombre');
     const descripcion = document.querySelector('#descripcion');
@@ -36,10 +39,7 @@ export const productoController =async () => {
         const request = await fetch('http://localhost:3000/api/productos', {
             method: 'POST',
             body: JSON.stringify(data),
-            headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-              headers : encabezados
-            },
+            encabezados
         });
         const response = await request.json();
         
